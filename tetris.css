@@ -1,3 +1,53 @@
+/* tetris-uputstvo */
+
+#uputstvo p {
+    border-radius: 10px;
+    border: 2px solid black;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#uputstvo,
+table.shape-picker,
+div.settings,
+body#uputstvoHTML {
+    /* background-color: #ebf79c; */
+    background-color: #ccc98e;
+}
+
+table.shape-picker {
+    margin: 20px;
+    border: 5px solid black;
+}
+
+td.shape-picker {
+    width: 35px;
+    border: 0px solid white;
+}
+
+.difficulty label {
+    font-size: 20px;
+}
+
+button#start {
+    background-color: #f7b614;
+    border: 2px solid black;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+button#start:hover {
+    background-color: #ebf79c;
+}
+
+
+/* tetris-igra */
+
+
+
+/* tetris-rezultati */
+
+
 #info {
 
     background-color: gray;
@@ -20,40 +70,31 @@ td {
     border-right-width: 1px;
 }
 
-td.shape-picker {
-    width: 35px;
-    border: 1px solid white;
-    border-left-width: 1px;
-    border-right-width: 1px;
-}
+
 
 #mainPlayArea table {
     border: 5px solid black;
 }
 
 
-table.shape-picker {
-    background-color: #ebf79c;
-}
 
-div.settings {
-    background-color: gray;
-}
+
+
 
 
 td.red {
-    border: 5px solid darkred;
-    background-color: red;
+    border: 5px solid rgb(96, 0, 0);
+    background-color: rgb(201, 64, 64);
 }
 
 td.green {
     border: 5px solid darkgreen;
-    background-color: green;
+    background-color: rgb(42, 176, 42);
 }
 
 td.blue {
     border: 5px solid darkblue;
-    background-color: blue;
+    background-color: rgb(83, 145, 181);
 }
 
 td.yellow {
@@ -67,7 +108,7 @@ td.purple {
 }
 
 td.orange {
-    border: 5px solid darkorange;
+    border: 5px solid rgb(104, 60, 6);
     background-color: orange;
 }
 

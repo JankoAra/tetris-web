@@ -20,11 +20,11 @@
     <script src="tetris-uputstvo.js"></script>
 </head>
 
-<body>
+<body id="uputstvoHTML">
     <div class="container-fluid">
         <div class="row text-center">
             <div class="col" id="uputstvo">
-                <h1>Tetris by Janko</h1>
+                <h1><b>Tetris by Janko</b></h1>
                 <p>
                     U igri "Tetris" igrač koristi tastere da pomera blokove koje padaju sa vrha prostora za igru sa
                     ciljem da ih složi na način tako da između blokova ostane što manje praznog prostora. Kada se jedan
@@ -49,39 +49,39 @@
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
-                        <td class="shape-picker blue T"></td>
+                        <td class="shape-picker blue T" data-shape="T"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
-                        <td class="shape-picker yellow Z"></td>
-                        <td class="shape-picker yellow Z"></td>
+                        <td class="shape-picker yellow Z" data-shape="Z"></td>
+                        <td class="shape-picker yellow Z" data-shape="Z"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
-                        <td class="shape-picker purple S"></td>
-                        <td class="shape-picker purple S"></td>
+                        <td class="shape-picker purple S" data-shape="S"></td>
+                        <td class="shape-picker purple S" data-shape="S"></td>
                         <td class="shape-picker"></td>
                     </tr>
                     <tr>
                         <td class="shape-picker"></td>
-                        <td class="shape-picker red I"></td>
-                        <td class="shape-picker red I"></td>
-                        <td class="shape-picker red I"></td>
-                        <td class="shape-picker red I"></td>
+                        <td class="shape-picker red I" data-shape="I"></td>
+                        <td class="shape-picker red I" data-shape="I"></td>
+                        <td class="shape-picker red I" data-shape="I"></td>
+                        <td class="shape-picker red I" data-shape="I"></td>
                         <td class="shape-picker"></td>
-                        <td class="shape-picker blue T"></td>
-                        <td class="shape-picker blue T"></td>
-                        <td class="shape-picker blue T"></td>
-                        <td class="shape-picker"></td>
-                        <td class="shape-picker"></td>
-                        <td class="shape-picker"></td>
-                        <td class="shape-picker yellow Z"></td>
-                        <td class="shape-picker yellow Z"></td>
+                        <td class="shape-picker blue T" data-shape="T"></td>
+                        <td class="shape-picker blue T" data-shape="T"></td>
+                        <td class="shape-picker blue T" data-shape="T"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
-                        <td class="shape-picker purple S"></td>
-                        <td class="shape-picker purple S"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker yellow Z" data-shape="Z"></td>
+                        <td class="shape-picker yellow Z" data-shape="Z"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker purple S" data-shape="S"></td>
+                        <td class="shape-picker purple S" data-shape="S"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
                     </tr>
@@ -125,19 +125,19 @@
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
-                        <td class="shape-picker green O"></td>
-                        <td class="shape-picker green O"></td>
+                        <td class="shape-picker green O" data-shape="O"></td>
+                        <td class="shape-picker green O" data-shape="O"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
-                        <td class="shape-picker cyan J"></td>
+                        <td class="shape-picker cyan J" data-shape="J"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
-                        <td class="shape-picker orange L"></td>
-                        <td class="shape-picker orange L"></td>
-                        <td class="shape-picker orange L"></td>
+                        <td class="shape-picker orange L" data-shape="L"></td>
+                        <td class="shape-picker orange L" data-shape="L"></td>
+                        <td class="shape-picker orange L" data-shape="L"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
@@ -147,17 +147,17 @@
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
-                        <td class="shape-picker green O"></td>
-                        <td class="shape-picker green O"></td>
+                        <td class="shape-picker green O" data-shape="O"></td>
+                        <td class="shape-picker green O" data-shape="O"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
-                        <td class="shape-picker cyan J"></td>
-                        <td class="shape-picker cyan J"></td>
-                        <td class="shape-picker cyan J"></td>
+                        <td class="shape-picker cyan J" data-shape="J"></td>
+                        <td class="shape-picker cyan J" data-shape="J"></td>
+                        <td class="shape-picker cyan J" data-shape="J"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
-                        <td class="shape-picker orange L"></td>
+                        <td class="shape-picker orange L" data-shape="L"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
                         <td class="shape-picker"></td>
@@ -197,16 +197,16 @@
                 </table>
 
             </div>
-            <div class="col">
+            <div class="col difficulty">
                 <br>
-                <h4>Tezina</h4>
+                <h2>Nivo</h2>
                 <p>
                     <input type="radio" name="difficulty" value="easy" checked>
                     <label for="easy">Lako</label>
-
+                    &nbsp;&nbsp;&nbsp;
                     <input type="radio" name="difficulty" value="medium">
                     <label for="medium">Srednje</label>
-
+                    &nbsp;&nbsp;&nbsp;
                     <input type="radio" name="difficulty" value="hard">
                     <label for="hard">Teško</label>
 
@@ -214,7 +214,7 @@
                 <br>
 
 
-                <button id="start" class="btn btn-primary">Start</button>
+                <button id="start" class="btn">START</button>
             </div>
         </div>
     </div>
