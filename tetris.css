@@ -1,0 +1,77 @@
+#info {
+
+    background-color: gray;
+}
+
+#mainPlayArea {
+    background-color: #ebf79c;
+    padding: 40px;
+}
+
+tr {
+    height: 35px;
+    margin: 5px;
+}
+
+td {
+    width: 35px;
+    border: 1px solid black;
+    border-left-width: 1px;
+    border-right-width: 1px;
+}
+
+td.shape-picker {
+    width: 35px;
+    border: 1px solid white;
+    border-left-width: 1px;
+    border-right-width: 1px;
+}
+
+#mainPlayArea table {
+    border: 5px solid black;
+}
+
+
+table.shape-picker {
+    background-color: #ebf79c;
+}
+
+div.settings {
+    background-color: gray;
+}
+
+
+td.red {
+    border: 5px solid darkred;
+    background-color: red;
+}
+
+td.green {
+    border: 5px solid darkgreen;
+    background-color: green;
+}
+
+td.blue {
+    border: 5px solid darkblue;
+    background-color: blue;
+}
+
+td.yellow {
+    border: 5px solid #f7b614;
+    background-color: yellow;
+}
+
+td.purple {
+    border: 5px solid rgb(42, 4, 42);
+    background-color: rgb(190, 9, 190);
+}
+
+td.orange {
+    border: 5px solid darkorange;
+    background-color: orange;
+}
+
+td.cyan {
+    border: 5px solid darkcyan;
+    background-color: cyan;
+}

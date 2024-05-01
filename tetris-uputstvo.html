@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris - Uputstvo</title>
+
+    <!-- Bootrstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="tetris.css">
+    <script src="tetris-uputstvo.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row text-center">
+            <div class="col" id="uputstvo">
+                <h1>Tetris by Janko</h1>
+                <p>
+                    U igri "Tetris" igrač koristi tastere da pomera blokove koje padaju sa vrha prostora za igru sa
+                    ciljem da ih složi na način tako da između blokova ostane što manje praznog prostora. Kada se jedan
+                    ceo red popuni, ceo taj red nestaje, a svi kvadratići iznad se spuštaju za jedan nivo i igrač time
+                    ostvaruje poene. Kako tok igre napreduje, blokovi padaju sve brže te igrač ima sve manje vremena za
+                    razmišljanje i slaganje. Kada se blokovi nagomilaju do vrha polja za igru, bez mogućnosti da se novi
+                    blok pojavi, igra je gotova.
+                </p>
+            </div>
+        </div>
+        <div class="row settings text-center">
+            <div class="col-12 d-flex justify-content-center shape-picker">
+
+                <table class="shape-picker">
+                    <tr>
+                    </tr>
+                    <tr>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker blue T"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker yellow Z"></td>
+                        <td class="shape-picker yellow Z"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker purple S"></td>
+                        <td class="shape-picker purple S"></td>
+                        <td class="shape-picker"></td>
+                    </tr>
+                    <tr>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker red I"></td>
+                        <td class="shape-picker red I"></td>
+                        <td class="shape-picker red I"></td>
+                        <td class="shape-picker red I"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker blue T"></td>
+                        <td class="shape-picker blue T"></td>
+                        <td class="shape-picker blue T"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker yellow Z"></td>
+                        <td class="shape-picker yellow Z"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker purple S"></td>
+                        <td class="shape-picker purple S"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                    </tr>
+                    <tr>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker text-center" colspan="4">
+                            <input type="checkbox" name="oblik" value="I" checked>
+                            <!-- <label for="oblik_I">I</label> -->
+                        </td>
+                        <!-- <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td> -->
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker text-center" colspan="3">
+                            <input type="checkbox" name="oblik" value="T" checked>
+                        </td>
+                        <!-- <td class="shape-picker"></td>
+                        <td class="shape-picker"></td> -->
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker text-center" colspan="3">
+                            <input type="checkbox" name="oblik" value="Z" checked>
+                        </td>
+                        <!-- <td class="shape-picker"></td>
+                        <td class="shape-picker"></td> -->
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker text-center" colspan="3">
+                            <input type="checkbox" name="oblik" value="S" checked>
+                        </td>
+                        <!-- <td class="shape-picker"></td>
+                        <td class="shape-picker"></td> -->
+                        <td class="shape-picker"></td>
+                    </tr>
+                    <tr>
+                    </tr>
+                    <tr>
+                    </tr>
+                    <tr>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker green O"></td>
+                        <td class="shape-picker green O"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker cyan J"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker orange L"></td>
+                        <td class="shape-picker orange L"></td>
+                        <td class="shape-picker orange L"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                    </tr>
+                    <tr>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker green O"></td>
+                        <td class="shape-picker green O"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker cyan J"></td>
+                        <td class="shape-picker cyan J"></td>
+                        <td class="shape-picker cyan J"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker orange L"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                    </tr>
+                    <tr>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker text-center" colspan="2">
+                            <input type="checkbox" name="oblik" value="O" checked>
+                        </td>
+                        <!-- <td class="shape-picker"></td> -->
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker text-center" colspan="3">
+                            <input type="checkbox" name="oblik" value="J" checked>
+                        </td>
+                        <!-- <td class="shape-picker"></td>
+                        <td class="shape-picker"></td> -->
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker text-center" colspan="3">
+                            <input type="checkbox" name="oblik" value="L" checked>
+                        </td>
+                        <!-- <td class="shape-picker"></td>
+                        <td class="shape-picker"></td> -->
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                        <td class="shape-picker"></td>
+                    </tr>
+                    <tr>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="col">
+                <br>
+                <h4>Tezina</h4>
+                <p>
+                    <input type="radio" name="difficulty" value="easy" checked>
+                    <label for="easy">Lako</label>
+
+                    <input type="radio" name="difficulty" value="medium">
+                    <label for="medium">Srednje</label>
+
+                    <input type="radio" name="difficulty" value="hard">
+                    <label for="hard">Teško</label>
+
+                </p>
+                <br>
+
+
+                <button id="start" class="btn btn-primary">Start</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
