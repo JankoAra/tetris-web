@@ -88,7 +88,19 @@ class TetrisShape {
         shape.color = this.color;
         return shape;
     }
+
+
 }
+
+let scoreboard = window.localStorage.getItem("tetris-scoreboard");
+if (scoreboard === null) scoreboard = {
+    1: { "name": "A", "score": 0 },
+    2: { "name": "B", "score": 0 },
+    3: { "name": "C", "score": 0 },
+    4: { "name": "D", "score": 0 },
+    5: { "name": "E", "score": 0 }
+};
+else scoreboard = JSON.parse(scoreboard);
 
 const ROWS = 20;
 const COLS = 10;
@@ -111,10 +123,17 @@ switch (difficulty) {
 }
 
 let spaceInterval = null;
+let points = 0;
+
+function updatePointDisplay() {
+    document.getElementById("points").innerHTML = Math.floor(points);
+}
 
 
 $(document).ready(function () {
+    //window.localStorage.removeItem("tetris-last-game");
     initTable();
+    points = 0;
     activeShape = new TetrisShape();
     nextShape = new TetrisShape();
     moveShape(0, 0);
@@ -151,13 +170,30 @@ $(document).ready(function () {
                             intervalGravityInterval = null;
                         }
                         setTimeout(() => {
-                            alert("Game over");
+                            points = Math.floor(points);
+                            let name = prompt("Game over. Osvojen broj poena: " + points +
+                                ". Unesite ime za scoreboard: ");
+                            if (name === null || /^\s*$/.test(name)) {
+                                name = 'Unknown';
+                            }
+                            else {
+                                name = name.trim();
+                            }
+                            let place = updateScoreboard(name, points);
+                            window.localStorage.setItem("tetris-last-game",
+                                JSON.stringify({ "name": name, "score": points, "place": place }));
+                            window.location.href = "tetris-rezultati.html";
                         }, 20);
+
                         return;
                     }
                     activeShape = nextShape;
                     nextShape = new TetrisShape();
                     moveShape(0, 0);
+                }
+                else {
+                    points += 0.5;
+                    updatePointDisplay();
                 }
                 break;
             case 'ArrowLeft':
@@ -247,7 +283,7 @@ function checkSideCollision(deltaCol) {
 
 function rotateClockwise() {
     let copy = activeShape.clone();
-    copy.rotation = (copy.rotation + 1) % 4;
+    copy.rotation = (copy.rotation + 3) % 4;
     copy.calculateBlocks();
     if (checkShapeOverlap(copy)) {
         copy.center[1]--;
@@ -307,6 +343,7 @@ function arrayDeepCopy(arr) {
 
 function clearRows() {
     //ciscenje redova
+    let numCleared = 0;
     rowloop: for (let i = ROWS - 1; i >= 0; i--) {
         for (let j = 0; j < COLS; j++) {
             if (!$(document.querySelector(".col" + j + ".row" + i)).hasClass("ground")) {
@@ -314,12 +351,14 @@ function clearRows() {
             }
         }
         console.log("row " + (ROWS - i) + " cleared");
+        numCleared++;
         for (let j = 0; j < COLS; j++) {
             let td = document.querySelector(".col" + j + ".row" + i);
             $(td).attr("class", "col" + j + " row" + i);
         }
     }
-
+    points += Math.pow(2, numCleared) * COLS;
+    updatePointDisplay();
     //spustanje preostalih redova
     for (let i = ROWS - 1; i >= 3; i--) {
         if (rowEmpty(i)) {
@@ -351,4 +390,22 @@ function rowEmpty(rowIndex) {
         if ($(td).hasClass("ground")) return false;
     }
     return true;
+}
+
+function updateScoreboard(newName, newScore) {
+    let maxPlaces = 5;
+    let order = 6;
+    for (let i = 1; i <= maxPlaces; i++) {
+        let currentScore = scoreboard[i]["score"];
+        if (newScore > currentScore) {
+            for (let j = maxPlaces; j > i; j--) {
+                scoreboard[j] = scoreboard[j - 1];
+            }
+            scoreboard[i] = { "name": newName, "score": newScore };
+            order = i;
+            break;
+        }
+    }
+    window.localStorage.setItem("tetris-scoreboard", JSON.stringify(scoreboard));
+    return order;
 }
