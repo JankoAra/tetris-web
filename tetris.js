@@ -106,10 +106,12 @@ const ROWS = 20;
 const COLS = 10;
 let activeShape = null;
 let nextShape = null;
+let ghostShape = null;
 const spawnPoint = [0, 4];
 let gameRunning = false;
 let intervalGravityInterval = null;
 let intervalTime;
+let ghostShapeAvailable = true;
 switch (difficulty) {
     case "easy":
         intervalTime = 2000;
@@ -129,17 +131,18 @@ function updatePointDisplay() {
     document.getElementById("points").innerHTML = Math.floor(points);
 }
 
-
 $(document).ready(function () {
-    //window.localStorage.removeItem("tetris-last-game");
     initTable();
     points = 0;
     activeShape = new TetrisShape();
     nextShape = new TetrisShape();
+
     moveShape(0, 0);
     gameRunning = true;
+    dropGhostShape();
     $(document).keydown(function (event) {
         if (!gameRunning) return;
+        clearGhostShape();
         switch (event.key) {
             case 'ArrowUp':
                 // Handle arrow up key press
@@ -152,6 +155,7 @@ $(document).ready(function () {
                 // console.log('Arrow Down pressed');
                 let moved = moveShape(1, 0);
                 if (!moved) {
+                    ghostShape = null;
                     if (spaceInterval !== null) {
                         clearInterval(spaceInterval);
                         spaceInterval = null;
@@ -159,8 +163,8 @@ $(document).ready(function () {
                     // blok ima nesto ispod sebe
                     activeShape.blocks.forEach(element => {
                         let td = document.querySelector(".col" + element[1] + ".row" + element[0]);
-                        $(td).removeClass("shapeCovering");
                         $(td).addClass("ground");
+                        $(td).addClass(activeShape.color);
                     });
                     clearRows();
                     if (checkGameOver()) {
@@ -178,6 +182,8 @@ $(document).ready(function () {
                             }
                             else {
                                 name = name.trim();
+                                if (name.length > 20)
+                                    name = name.slice(0, 20) + "...";
                             }
                             let place = updateScoreboard(name, points);
                             window.localStorage.setItem("tetris-last-game",
@@ -212,10 +218,11 @@ $(document).ready(function () {
                         document.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'ArrowDown' }));
                     }, 10);
                 }
-                break;
+                return;
             default:
                 break;
         }
+        dropGhostShape();
     });
 
     intervalGravityInterval = setInterval(() => {
@@ -238,27 +245,59 @@ function initTable() {
     }
 }
 
-
-function moveShape(deltaRow, deltaCol) {
-    if (checkSideCollision(deltaCol)) return true;
-    if (deltaRow > 0 && checkBottomCollision()) return false;
-    activeShape.blocks.forEach(element => {
+function dropGhostShape() {
+    if (!gameRunning || !ghostShapeAvailable) return;
+    ghostShape = activeShape.clone();
+    while (!checkShapeOverlap(ghostShape)) {
+        ghostShape.center[0]++;
+        ghostShape.calculateBlocks();
+    }
+    ghostShape.center[0]--;
+    ghostShape.calculateBlocks();
+    ghostShape.blocks.forEach(element => {
         let td = document.querySelector(".col" + element[1] + ".row" + element[0]);
-        $(td).removeClass(activeShape.color);
+        for (let i = 0; i < activeShape.blocks.length; i++) {
+            if (element[0] === activeShape.blocks[i][0] && element[1] === activeShape.blocks[i][1]) {
+                return;
+            }
+        }
+        $(td).addClass("ghost");
+        $(td).addClass(ghostShape.color);
     });
-    activeShape.center[0] += deltaRow;
-    activeShape.center[1] += deltaCol;
-    activeShape.calculateBlocks();
-    activeShape.blocks.forEach(element => {
+}
+
+function clearGhostShape() {
+    if (ghostShape !== null) {
+        ghostShape.blocks.forEach(element => {
+            let td = document.querySelector(".col" + element[1] + ".row" + element[0]);
+            $(td).removeClass(ghostShape.color);
+            $(td).removeClass("ghost");
+        });
+    }
+}
+
+
+function moveShape(deltaRow, deltaCol, shape = activeShape) {
+    if (checkSideCollision(deltaCol)) return true;
+    if (deltaRow > 0 && checkBottomCollision(shape)) return false;
+    clearGhostShape();
+    shape.blocks.forEach(element => {
         let td = document.querySelector(".col" + element[1] + ".row" + element[0]);
-        $(td).addClass(activeShape.color);
+        $(td).removeClass(shape.color);
+    });
+    shape.center[0] += deltaRow;
+    shape.center[1] += deltaCol;
+    shape.calculateBlocks();
+    shape.blocks.forEach(element => {
+        let td = document.querySelector(".col" + element[1] + ".row" + element[0]);
+        $(td).addClass(shape.color);
     });
     return true;
 }
 
-function checkBottomCollision() {
+function checkBottomCollision(shape = activeShape) {
     let collision = false;
-    activeShape.blocks.forEach(element => {
+    shape.blocks.forEach(element => {
         if (element[0] + 1 >= ROWS) collision = true;
         else {
             let td = document.querySelector(".col" + element[1] + ".row" + (element[0] + 1));

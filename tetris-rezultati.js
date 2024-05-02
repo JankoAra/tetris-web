@@ -1,43 +1,38 @@
 $(document).ready(function () {
     let scoreboard = JSON.parse(window.localStorage.getItem("tetris-scoreboard"));
     let lastGame = JSON.parse(window.localStorage.getItem("tetris-last-game"));
+    const RESULTS_TO_SHOW = 5;
 
-    renderScoreboard(scoreboard);
+    renderScoreboard();
 
     $("#backToBeginning").click(function () {
         window.location.href = "tetris-uputstvo.html";
     });
 
 
-    function renderScoreboard(scores) {
-        const scoreboardElement = document.getElementById("scoreboard");
-        scoreboardElement.innerHTML = ""; // Clear previous scoreboard
-        let lastGameInTop5 = false;
-        let maxRows = 5;
-        for (let i = 1; i <= maxRows; i++) {
-            let score = scores[i];
-            let tr = document.createElement("tr");
-            tr.innerHTML = `
-                <td>${i}.</td>
-                <td>${score.name}</td>
-                <td>${score.score}</td>
-            `;
+    function renderScoreboard() {
+        let top5 = false;
+        const scoreboardElement = $("div.scoreboard");
+        for (let i = 1; i <= RESULTS_TO_SHOW; i++) {
+            let scoreDict = scoreboard[i];
+            let pill = $("<div></div>").addClass("pill");
+            pill.append($("<span></span>").addClass("place").text(i));
+            pill.append($("<span></span>").addClass("name").text(scoreDict["name"]));
+            pill.append($("<span></span>").addClass("score").text(scoreDict["score"]));
             if (i === lastGame.place) {
-                tr.innerHTML += `<td><b>NEW</b></td>`
-                lastGameInTop5 = true;
+                top5 = true;
+                pill.addClass("myscore");
             }
-            scoreboardElement.appendChild(tr);
+            scoreboardElement.append(pill);
         }
-        if (!lastGameInTop5) {
-            let tr = document.createElement("tr");
-            tr.innerHTML = `
-                <td></td>
-                <td>${lastGame.name}</td>
-                <td>${lastGame.score}</td>
-                <td><b>NEW</b></td>
-            `;
-            scoreboardElement.appendChild(tr);
-
+        if (!top5) {
+            scoreboardElement.append($("<hr>"));
+            let pill = $("<div></div>").addClass("pill");
+            pill.append($("<span></span>").addClass("place"));
+            pill.append($("<span></span>").addClass("name").text(lastGame.name));
+            pill.append($("<span></span>").addClass("score").text(lastGame.score));
+            pill.addClass("myscore");
+            scoreboardElement.append(pill);
         }
     }
 })

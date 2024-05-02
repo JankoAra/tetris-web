@@ -29,32 +29,32 @@ td.shape-picker {
     font-size: 20px;
 }
 
-button#start {
+button#start,
+button#backToBeginning {
     background-color: #f7b614;
     border: 2px solid black;
     font-size: 30px;
     font-weight: bold;
 }
 
-button#start:hover {
+button#start:hover,
+button#backToBeginning:hover {
     background-color: #ebf79c;
 }
 
 
 /* tetris-igra */
 
-
-
-/* tetris-rezultati */
-
+body#igraHTML {
+    background-color: #ccc98e;
+}
 
 #info {
-
     background-color: gray;
 }
 
 #mainPlayArea {
-    background-color: #ebf79c;
+    background-color: #ccc98e;
     padding: 40px;
 }
 
@@ -65,9 +65,9 @@ tr {
 
 td {
     width: 35px;
-    border: 1px solid black;
+    /* border: 1px solid black;
     border-left-width: 1px;
-    border-right-width: 1px;
+    border-right-width: 1px; */
 }
 
 
@@ -76,11 +76,9 @@ td {
     border: 5px solid black;
 }
 
-
-
-
-
-
+td.ghost {
+    opacity: 0.1;
+}
 
 td.red {
     border: 5px solid rgb(96, 0, 0);
@@ -115,4 +113,43 @@ td.orange {
 td.cyan {
     border: 5px solid darkcyan;
     background-color: cyan;
+}
+
+td.ground {
+    border: 5px solid black;
+}
+
+/* tetris-rezultati */
+
+body#rezultatiHTML {
+    font-family: Arial, sans-serif;
+    background-color: #ccc98e;
+}
+
+.scoreboard {
+    width: 500px;
+    margin: 0 auto;
+}
+
+
+.pill {
+    background-color: #e5783471;
+    color: white;
+    border-radius: 20px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+
+#resultsTitle {
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.pill.myscore {
+    background-color: #5c6908;
 }
