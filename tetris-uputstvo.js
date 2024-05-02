@@ -26,13 +26,15 @@ $(document).ready(function () {
 
 
     function startGame() {
-        let checked = $("input[type=checkbox]:checked");
+        let checked = $("input[type=checkbox][name=oblik]:checked");
         let shapes = [];
         checked.each(function () {
             shapes.push($(this).val());
         });
 
         window.localStorage.setItem("tetris-shapes", shapes);
+        let ghostOn = $("input[type=checkbox][name=ghost]").prop("checked");
+        window.localStorage.setItem("tetris-ghost", ghostOn);
 
         let difficulty = $("input[type=radio]:checked").val();
         window.localStorage.setItem("tetris-difficulty", difficulty);

@@ -28,14 +28,31 @@
         <div class="row">
             <div class="col-sm d-flex flex-column" id="info">
             </div>
-            <div class="col-8 d-flex justify-content-center align-items-center" id="mainPlayArea">
-                <table>
+            <div class="col-6 d-flex justify-content-center align-items-center" id="mainPlayArea">
+                <table id="playArea">
 
                 </table>
             </div>
-            <div class="col-sm d-flex flex-column align-items-end" id="info">
-                <h2 class="d-inline">Points: </h2>
-                <h2 class="d-inline" id="points">0</h2>
+            <div class="col-sm d-flex flex-column align-items-center justify-content-between" id="info">
+                <div id="topContent">
+                    <div class="roundedBorder">
+                        <h2 class="d-inline">Points: </h2>
+                        <h2 class="d-inline" id="points">0</h2>
+                    </div>
+                    <div class="roundedBorder">
+                        <h2 class="d-inline">Lines cleared: </h2>
+                        <h2 class="d-inline" id="linesCleared">0</h2>
+                    </div>
+                    <div class="roundedBorder">
+                        <h2 class="d-inline">Level: </h2>
+                        <h2 class="d-inline" id="level">1</h2>
+                    </div>
+                </div>
+                
+                <div id="bottomContent" class="roundedBorder">
+                    <table id="nextShapePreview" class="roundedBorder">
+                    </table>
+                </div>
             </div>
         </div>
     </div>

@@ -92,6 +92,28 @@ class TetrisShape {
 
 }
 
+function drawNextShapePreview() {
+    let table = document.getElementById('nextShapePreview');
+    table.innerHTML="";
+    for (let i = 0; i < 5; i++) {
+        let tr = document.createElement('tr');
+        for (let j = 0; j < 5; j++) {
+            let td = document.createElement('td');
+            $(td).addClass("col" + j).addClass("row" + i).addClass("preview");
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
+    }
+    let preview = nextShape.clone();
+    preview.center = [1, 1];
+    if(preview.type === "I") preview.rotation = 1;
+    preview.calculateBlocks();
+    preview.blocks.forEach(element => {
+        let td = document.querySelector(".col" + element[1] + ".row" + element[0] + ".preview");
+        $(td).addClass(preview.color);
+    });
+}
+
 let scoreboard = window.localStorage.getItem("tetris-scoreboard");
 if (scoreboard === null) scoreboard = {
     1: { "name": "A", "score": 0 },
@@ -111,10 +133,11 @@ const spawnPoint = [0, 4];
 let gameRunning = false;
 let intervalGravityInterval = null;
 let intervalTime;
-let ghostShapeAvailable = true;
+let ghostShapeAvailable = window.localStorage.getItem("tetris-ghost");
+
 switch (difficulty) {
     case "easy":
-        intervalTime = 2000;
+        intervalTime = 1500;
         break;
     case "medium":
         intervalTime = 1000;
@@ -126,23 +149,44 @@ switch (difficulty) {
 
 let spaceInterval = null;
 let points = 0;
-
+let totalLinesCleared = 0;
+let level = 1;
+let pointsToLevelUp = 300;
+let minIntervalTime = 200;
 function updatePointDisplay() {
     document.getElementById("points").innerHTML = Math.floor(points);
+    if(points>=level*pointsToLevelUp){
+        level++;
+        updateLevelDisplay();
+        intervalTime = Math.max(intervalTime - 100, minIntervalTime);
+        if(intervalGravityInterval !== null) clearInterval(intervalGravityInterval);
+        intervalGravityInterval = setInterval(() => {
+            document.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'ArrowDown' }));
+        }, intervalTime);
+    }
+}
+function updateLinesClearedDisplay() {
+    document.getElementById("linesCleared").innerHTML = totalLinesCleared;
+}
+function updateLevelDisplay() {
+    document.getElementById("level").innerHTML = level;
 }
 
 $(document).ready(function () {
     initTable();
     points = 0;
+    totalLinesCleared = 0;
+    level = 1;
     activeShape = new TetrisShape();
     nextShape = new TetrisShape();
 
     moveShape(0, 0);
     gameRunning = true;
     dropGhostShape();
+    drawNextShapePreview();
     $(document).keydown(function (event) {
         if (!gameRunning) return;
-        clearGhostShape();
+        //clearGhostShape();
         switch (event.key) {
             case 'ArrowUp':
                 // Handle arrow up key press
@@ -196,6 +240,7 @@ $(document).ready(function () {
                     activeShape = nextShape;
                     nextShape = new TetrisShape();
                     moveShape(0, 0);
+                    drawNextShapePreview();
                 }
                 else {
                     points += 0.5;
@@ -232,7 +277,7 @@ $(document).ready(function () {
 });
 
 function initTable() {
-    let table = document.getElementsByTagName('table')[0];
+    let table = document.getElementById('playArea');
     for (let i = 0; i < ROWS; i++) {
         let tr = document.createElement('tr');
         $(tr).addClass("row" + i)
@@ -246,7 +291,7 @@ function initTable() {
 }
 
 function dropGhostShape() {
-    if (!gameRunning || !ghostShapeAvailable) return;
+    if (!gameRunning || !ghostShapeAvailable || ghostShapeAvailable==="false") return;
     ghostShape = activeShape.clone();
     while (!checkShapeOverlap(ghostShape)) {
         ghostShape.center[0]++;
@@ -267,6 +312,7 @@ function dropGhostShape() {
 }
 
 function clearGhostShape() {
+    if(!ghostShapeAvailable || ghostShapeAvailable==="false") return;
     if (ghostShape !== null) {
         ghostShape.blocks.forEach(element => {
             let td = document.querySelector(".col" + element[1] + ".row" + element[0]);
@@ -335,11 +381,13 @@ function rotateClockwise() {
                 copy.center[0]--;
                 copy.calculateBlocks();
                 if (checkShapeOverlap(copy)) {
+                    console.log("ne moze se rotirati");
                     return;
                 }
             }
         }
     }
+    clearGhostShape();
 
     activeShape.blocks.forEach(element => {
         let td = document.querySelector(".col" + element[1] + ".row" + element[0]);
@@ -397,7 +445,9 @@ function clearRows() {
         }
     }
     points += Math.pow(2, numCleared) * COLS;
+    totalLinesCleared += numCleared;
     updatePointDisplay();
+    updateLinesClearedDisplay();
     //spustanje preostalih redova
     for (let i = ROWS - 1; i >= 3; i--) {
         if (rowEmpty(i)) {

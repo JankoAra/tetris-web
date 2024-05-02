@@ -5,9 +5,9 @@
     border: 2px solid black;
     padding-top: 20px;
     padding-bottom: 20px;
+    background-color: #ebf79c;
 }
 
-#uputstvo,
 table.shape-picker,
 div.settings,
 body#uputstvoHTML {
@@ -18,6 +18,7 @@ body#uputstvoHTML {
 table.shape-picker {
     margin: 20px;
     border: 5px solid black;
+    background-color: #ebf79c;
 }
 
 td.shape-picker {
@@ -32,7 +33,7 @@ td.shape-picker {
 button#start,
 button#backToBeginning {
     background-color: #f7b614;
-    border: 2px solid black;
+    border: 3px solid black;
     font-size: 30px;
     font-weight: bold;
 }
@@ -40,6 +41,13 @@ button#backToBeginning {
 button#start:hover,
 button#backToBeginning:hover {
     background-color: #ebf79c;
+}
+
+.settings-pill {
+    background-color: #ebf79c;
+    width: 40%;
+    border-radius: 30px;
+    border: 5px solid black;
 }
 
 
@@ -51,6 +59,32 @@ body#igraHTML {
 
 #info {
     background-color: gray;
+}
+
+#info #nextShapePreview {
+    /* background-color: #ebf79c; */
+    /* padding-bottom: 10px; */
+    width: auto;
+}
+
+.roundedBorder {
+    border-radius: 30px;
+    border: 5px solid rgba(0, 0, 0, 0);
+    background-color: #ebf79c;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+#topContent {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+#bottomContent {
+    display: flex;
+    justify-content: center;
 }
 
 #mainPlayArea {
@@ -74,10 +108,11 @@ td {
 
 #mainPlayArea table {
     border: 5px solid black;
+    background-color: #ebf79c;
 }
 
 td.ghost {
-    opacity: 0.1;
+    opacity: 0.15;
 }
 
 td.red {
