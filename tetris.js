@@ -92,6 +92,16 @@ class TetrisShape {
 
 }
 
+function playSoundtrack(){
+    let soundHTML = `<audio autoplay loop>
+    <source src="tetris-dodatno/tetris-ost-2.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>`;
+    let enabled = window.localStorage.getItem("tetris-sound");
+    if(enabled === "false" || enabled === null) return;
+    $("body").append(soundHTML);
+}
+
 function drawNextShapePreview() {
     let table = document.getElementById('nextShapePreview');
     table.innerHTML="";
@@ -174,6 +184,7 @@ function updateLevelDisplay() {
 
 $(document).ready(function () {
     initTable();
+    playSoundtrack();
     points = 0;
     totalLinesCleared = 0;
     level = 1;
@@ -452,10 +463,11 @@ function clearRows() {
     updatePointDisplay();
     updateLinesClearedDisplay();
     //spustanje preostalih redova
-    for (let i = ROWS - 1; i >= 3; i--) {
+    let test = 1;
+    for (let i = ROWS - 1; i >= test; i--) {
         if (rowEmpty(i)) {
             let nonEmpty = 0;
-            for (let j = i - 1; j >= 3; j--) {
+            for (let j = i - 1; j >= test; j--) {
                 if (!rowEmpty(j)) {
                     nonEmpty = j;
                     break;

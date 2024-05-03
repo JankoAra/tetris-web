@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    playSoundtrack();
     let scoreboard = JSON.parse(window.localStorage.getItem("tetris-scoreboard"));
     let lastGame = JSON.parse(window.localStorage.getItem("tetris-last-game"));
     const RESULTS_TO_SHOW = 5;
@@ -35,4 +36,14 @@ $(document).ready(function () {
             scoreboardElement.append(pill);
         }
     }
-})
+
+    function playSoundtrack(){
+        let soundHTML = `<audio autoplay>
+        <source src="tetris-dodatno/tetris-ost-end.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>`;
+        let enabled = window.localStorage.getItem("tetris-sound");
+        if(enabled === "false" || enabled === null) return;
+        $("body").append(soundHTML);
+    }
+});

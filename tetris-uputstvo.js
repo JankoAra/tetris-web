@@ -36,6 +36,9 @@ $(document).ready(function () {
         let ghostOn = $("input[type=checkbox][name=ghost]").prop("checked");
         window.localStorage.setItem("tetris-ghost", ghostOn);
 
+        let soundOn = $("input[type=checkbox][name=sound]").prop("checked");
+        window.localStorage.setItem("tetris-sound", soundOn);
+
         let difficulty = $("input[type=radio]:checked").val();
         window.localStorage.setItem("tetris-difficulty", difficulty);
 
