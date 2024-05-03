@@ -58,7 +58,7 @@ body#igraHTML {
 }
 
 #info {
-    background-color: gray;
+    background-color: rgba(179, 184, 146, 0.788);
 }
 
 #info #nextShapePreview {
@@ -152,6 +152,17 @@ td.cyan {
 
 td.ground {
     border: 5px solid black;
+}
+
+#leaderboard, #leaderboard div{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+#leaderboard div .place{
+    margin-right: 1px;
 }
 
 /* tetris-rezultati */

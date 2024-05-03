@@ -92,19 +92,34 @@ class TetrisShape {
 
 }
 
-function playSoundtrack(){
+function playSoundtrack() {
     let soundHTML = `<audio autoplay loop>
     <source src="tetris-dodatno/tetris-ost-2.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>`;
     let enabled = window.localStorage.getItem("tetris-sound");
-    if(enabled === "false" || enabled === null) return;
+    if (enabled === "false" || enabled === null) return;
     $("body").append(soundHTML);
+}
+
+function renderScoreboard() {
+    //let scoreboard = JSON.parse(window.localStorage.getItem("tetris-scoreboard"));
+    const RESULTS_TO_SHOW = 5;
+    const scoreboardElement = $("div#leaderboard");
+    for (let i = 1; i <= RESULTS_TO_SHOW; i++) {
+        let scoreDict = scoreboard[i];
+        let pill = $("<div></div>").addClass("pill");
+        pill.append($("<div></div>").addClass("place").addClass("text-start").text(i));
+        pill.append($("<div></div>").addClass("name").text(scoreDict["name"]));
+        pill.append($("<div></div>").addClass("score").addClass("ms-auto")
+            .addClass("text-end").text(scoreDict["score"]));
+        scoreboardElement.append(pill);
+    }
 }
 
 function drawNextShapePreview() {
     let table = document.getElementById('nextShapePreview');
-    table.innerHTML="";
+    table.innerHTML = "";
     for (let i = 0; i < 5; i++) {
         let tr = document.createElement('tr');
         for (let j = 0; j < 5; j++) {
@@ -116,7 +131,7 @@ function drawNextShapePreview() {
     }
     let preview = nextShape.clone();
     preview.center = [1, 1];
-    if(preview.type === "I") preview.rotation = 1;
+    if (preview.type === "I") preview.rotation = 1;
     preview.calculateBlocks();
     preview.blocks.forEach(element => {
         let td = document.querySelector(".col" + element[1] + ".row" + element[0] + ".preview");
@@ -153,7 +168,7 @@ switch (difficulty) {
         intervalTime = 1000;
         break;
     case "hard":
-        intervalTime = 500;
+        intervalTime = 700;
         break;
 }
 
@@ -165,11 +180,11 @@ let pointsToLevelUp = 300;
 let minIntervalTime = 200;
 function updatePointDisplay() {
     document.getElementById("points").innerHTML = Math.floor(points);
-    if(points>=level*pointsToLevelUp){
+    if (points >= level * pointsToLevelUp) {
         level++;
         updateLevelDisplay();
         intervalTime = Math.max(intervalTime - 100, minIntervalTime);
-        if(intervalGravityInterval !== null) clearInterval(intervalGravityInterval);
+        if (intervalGravityInterval !== null) clearInterval(intervalGravityInterval);
         intervalGravityInterval = setInterval(() => {
             document.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'ArrowDown' }));
         }, intervalTime);
@@ -185,6 +200,7 @@ function updateLevelDisplay() {
 $(document).ready(function () {
     initTable();
     playSoundtrack();
+    renderScoreboard();
     points = 0;
     totalLinesCleared = 0;
     level = 1;
@@ -203,7 +219,7 @@ $(document).ready(function () {
                 // Handle arrow up key press
                 // console.log('Arrow Up pressed');
                 //moveShape(-1, 0);
-                if(spaceInterval!==null)break;
+                if (spaceInterval !== null) break;
                 rotateClockwise();
                 break;
             case 'ArrowDown':
@@ -262,13 +278,13 @@ $(document).ready(function () {
             case 'ArrowLeft':
                 // Handle arrow left key press
                 // console.log('Arrow Left pressed');
-                if(spaceInterval!==null)break;
+                if (spaceInterval !== null) break;
                 moveShape(0, -1);
                 break;
             case 'ArrowRight':
                 // Handle arrow right key press
                 // console.log('Arrow Right pressed');
-                if(spaceInterval!==null)break;
+                if (spaceInterval !== null) break;
                 moveShape(0, 1);
                 break;
             case ' ':
@@ -305,7 +321,7 @@ function initTable() {
 }
 
 function dropGhostShape() {
-    if (!gameRunning || !ghostShapeAvailable || ghostShapeAvailable==="false") return;
+    if (!gameRunning || !ghostShapeAvailable || ghostShapeAvailable === "false") return;
     ghostShape = activeShape.clone();
     while (!checkShapeOverlap(ghostShape)) {
         ghostShape.center[0]++;
@@ -326,7 +342,7 @@ function dropGhostShape() {
 }
 
 function clearGhostShape() {
-    if(!ghostShapeAvailable || ghostShapeAvailable==="false") return;
+    if (!ghostShapeAvailable || ghostShapeAvailable === "false") return;
     if (ghostShape !== null) {
         ghostShape.blocks.forEach(element => {
             let td = document.querySelector(".col" + element[1] + ".row" + element[0]);
