@@ -192,6 +192,7 @@ $(document).ready(function () {
                 // Handle arrow up key press
                 // console.log('Arrow Up pressed');
                 //moveShape(-1, 0);
+                if(spaceInterval!==null)break;
                 rotateClockwise();
                 break;
             case 'ArrowDown':
@@ -250,11 +251,13 @@ $(document).ready(function () {
             case 'ArrowLeft':
                 // Handle arrow left key press
                 // console.log('Arrow Left pressed');
+                if(spaceInterval!==null)break;
                 moveShape(0, -1);
                 break;
             case 'ArrowRight':
                 // Handle arrow right key press
                 // console.log('Arrow Right pressed');
+                if(spaceInterval!==null)break;
                 moveShape(0, 1);
                 break;
             case ' ':

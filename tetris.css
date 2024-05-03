@@ -169,14 +169,16 @@ body#rezultatiHTML {
 
 .pill {
     background-color: #e5783471;
+    background-color: #ebf79c;
     color: white;
     border-radius: 20px;
     padding: 10px 20px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
     font-size: 30px;
+    color: black;
+    border:2px solid black;
 }
 
 #resultsTitle {
@@ -186,5 +188,9 @@ body#rezultatiHTML {
 }
 
 .pill.myscore {
-    background-color: #5c6908;
+    background-color: #93a32d;
+}
+
+.place{
+    margin-right: 30px;
 }

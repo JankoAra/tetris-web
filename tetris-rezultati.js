@@ -16,9 +16,9 @@ $(document).ready(function () {
         for (let i = 1; i <= RESULTS_TO_SHOW; i++) {
             let scoreDict = scoreboard[i];
             let pill = $("<div></div>").addClass("pill");
-            pill.append($("<span></span>").addClass("place").text(i));
-            pill.append($("<span></span>").addClass("name").text(scoreDict["name"]));
-            pill.append($("<span></span>").addClass("score").text(scoreDict["score"]));
+            pill.append($("<div></div>").addClass("place").text(i));
+            pill.append($("<div></div>").addClass("name").text(scoreDict["name"]));
+            pill.append($("<div></div>").addClass("score").addClass("ms-auto").text(scoreDict["score"]));
             if (i === lastGame.place) {
                 top5 = true;
                 pill.addClass("myscore");
@@ -28,9 +28,9 @@ $(document).ready(function () {
         if (!top5) {
             scoreboardElement.append($("<hr>"));
             let pill = $("<div></div>").addClass("pill");
-            pill.append($("<span></span>").addClass("place"));
-            pill.append($("<span></span>").addClass("name").text(lastGame.name));
-            pill.append($("<span></span>").addClass("score").text(lastGame.score));
+            pill.append($("<div></div>").addClass("place"));
+            pill.append($("<div></div>").addClass("name").text(lastGame.name));
+            pill.append($("<div></div>").addClass("score").addClass("ms-auto").text(lastGame.score));
             pill.addClass("myscore");
             scoreboardElement.append(pill);
         }
