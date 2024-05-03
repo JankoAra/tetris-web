@@ -39,7 +39,8 @@ button#backToBeginning {
 }
 
 button#start:hover,
-button#backToBeginning:hover {
+button#backToBeginning:hover,
+#rangLista:hover {
     background-color: #ebf79c;
 }
 
@@ -48,17 +49,29 @@ button#backToBeginning:hover {
     width: 50%;
     border-radius: 30px;
     border: 5px solid black;
+    padding: 10px;
+}
+
+#rangLista{
+    border: 3px solid black;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: #f7b614;
+}
+
+#rangLista, #start{
+    margin: 10px;
 }
 
 
 /* tetris-igra */
 
 body#igraHTML {
-    background-color: #ccc98e;
+    background-color: #000000;
 }
 
 #info {
-    background-color: rgba(179, 184, 146, 0.788);
+    background-color: rgb(179, 184, 146);
 }
 
 #info #nextShapePreview {
@@ -175,6 +188,7 @@ body#rezultatiHTML {
 .scoreboard {
     width: 500px;
     margin: 0 auto;
+    font-weight: bold;
 }
 
 

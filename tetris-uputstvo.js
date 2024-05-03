@@ -24,6 +24,10 @@ $(document).ready(function () {
         $(this).css("cursor", "pointer");
     })
 
+    $("#rangLista").click(function(){
+        window.location.href = "tetris-rezultati.html";
+    });
+
 
     function startGame() {
         let checked = $("input[type=checkbox][name=oblik]:checked");

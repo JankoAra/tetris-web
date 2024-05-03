@@ -474,7 +474,9 @@ function clearRows() {
             $(td).attr("class", "col" + j + " row" + i);
         }
     }
-    points += Math.pow(2, numCleared) * COLS;
+    if(numCleared > 0) {
+        points += Math.pow(2, numCleared) * COLS;
+    }
     totalLinesCleared += numCleared;
     updatePointDisplay();
     updateLinesClearedDisplay();
