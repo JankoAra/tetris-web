@@ -216,15 +216,10 @@ $(document).ready(function () {
         //clearGhostShape();
         switch (event.key) {
             case 'ArrowUp':
-                // Handle arrow up key press
-                // console.log('Arrow Up pressed');
-                //moveShape(-1, 0);
                 if (spaceInterval !== null) break;
                 rotateClockwise();
                 break;
             case 'ArrowDown':
-                // Handle arrow down key press
-                // console.log('Arrow Down pressed');
                 let moved = moveShape(1, 0);
                 if (!moved) {
                     ghostShape = null;
@@ -276,14 +271,10 @@ $(document).ready(function () {
                 }
                 break;
             case 'ArrowLeft':
-                // Handle arrow left key press
-                // console.log('Arrow Left pressed');
                 if (spaceInterval !== null) break;
                 moveShape(0, -1);
                 break;
             case 'ArrowRight':
-                // Handle arrow right key press
-                // console.log('Arrow Right pressed');
                 if (spaceInterval !== null) break;
                 moveShape(0, 1);
                 break;
