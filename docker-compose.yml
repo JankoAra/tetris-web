@@ -1,0 +1,14 @@
+services:
+  tetris-web:
+    build: .
+    container_name: tetris-web
+    networks:
+      - proxy-net
+    expose:
+      - "80"
+    ports:
+      - 30000:80
+    restart: unless-stopped
+networks:
+  proxy-net:
+    external: true
