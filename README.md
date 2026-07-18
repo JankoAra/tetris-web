@@ -31,4 +31,4 @@ The site is served by a minimal `nginx:alpine-slim` container:
 docker compose up -d --build
 ```
 
-This builds the image from the local source and starts it on port `30000`, with `tetris-uputstvo.html` as the index page. The compose file expects an external `proxy-net` Docker network and is set up to run behind [Nginx Proxy Manager](https://nginxproxymanager.com/) (see the `VIRTUAL_HOST`/`VIRTUAL_PORT` environment variables).
+This builds the image from the local source and starts it on port `30000`, with `tetris-uputstvo.html` as the index page. The compose file expects an external `proxy-net` Docker network and is meant to run behind [Nginx Proxy Manager](https://nginxproxymanager.com/), which is pointed at the `tetris-web` container on port `30000` (or `80` over the shared network) via its own UI.
